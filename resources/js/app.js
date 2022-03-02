@@ -18,3 +18,13 @@ createApp({
 })
 .use(router)
 .mount('#app');
+import LeaderboardComponent from "./components/LeaderboardComponent.vue";
+
+createApp({
+    components: {
+        LeaderboardComponent
+    }
+})
+.use(router)
+.mount('#pusher');
+

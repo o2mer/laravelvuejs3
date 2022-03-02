@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::middleware('auth')->name('card')
+                         ->get('/cards/{card}',[CardController::class, 'show']);
+
+ Route::middleware('auth')->name('dashboard')
+                         ->get('/dashboard',[HomeController::class, 'index']);
+
+Route::get('/leaderboard', [CardController::class, 'leaderboard'])->name('leaderboard');
 
 require __DIR__.'/auth.php';
